@@ -2,80 +2,73 @@
  * Classe qui modelise une liste chainee sous la forme d'un tableau de maillons
  * - chaque maillon represente un element de la liste
  * - le successeur est stocke explicitement dans chaque maillon
- *
- * L'entier -1 designe la fin de liste, nil
- *
- * Les places libres sont caracterisees par le fait que le successeur vaut -2
- *
+ * 
+ * L'entier -1 designe la fin de liste, nil  
+ * 
  */
 
 public class ListeChaineePlacesLibres implements Liste {
 
-
+	
     /**
      * attributs de gestion de la liste
      */
     private int teteLibre;
     private int tete;
     private MaillonChaine[] tab;
-
+	
     /**
-     * constructeur
+     * constructeur 
      * @param taillemax de la liste
      */
     public ListeChaineePlacesLibres(int tMax) {
-			// cree les tableaux
-			this.tab = new MaillonChaine[tMax];
-
-			// la liste est vide
-			this.tete = -1;
-
-			// initialise la teteLibre à 0
-			this.teteLibre = 0;
-
-			// initialise les cases en creant les objets
-			// On initialise l'espace libre. Chacun case libre a un successeur qui a une place libre
-			for (int i = 0; i < tMax-1; i++) {
-				this.tab[i]=new MaillonChaine(null, i+1);
-			}
-			this.tab[tMax-1] = new MaillonChaine(null,0);
-    }
+        if (tMax < 1){
+			tMax = 1;
+		}
+		this.tab = new MaillonChaine[tMax];
+		this.tete = -1;
+        this.teteLibre = 0;
+		for(int i=0; i<this.tab.length-1; i++){
+			this.tab[i] = new MaillonChaine(null, i+1);
+		}
+        this.tab[this.tab.length-1] = new MaillonChaine(null, -1);
+	}
 
     /**
      * acces a la tete
      */
     @Override
     public int tete() {
-			return this.tete;
+	return this.tete;
     }
 
-
+	
     /**
      * savoir si une place est en fin
      * si la place vaut nil
      */
     @Override
     public boolean finliste(int p) {
-			return p == -1;
+	return p == -1;
     }
-
+    
     /**
      * la successeur de maniere chainee, trouve dans le tableau suivant
      */
     @Override
     public int suc(int p) {
-			return this.tab[p].getSuc();
+	return this.tab[p].getSuc();
     }
-
+    
     /**
      * valeur trouvee dans le tableau valeur
      */
     @Override
     public String val(int p) {
-			return this.tab[p].getVal();
+	return this.tab[p].getVal();
     }
-
-
+    
+	
     /**
      * suppression d'un element de la liste
      * avec gestion de la liste libre
@@ -89,17 +82,17 @@ public class ListeChaineePlacesLibres implements Liste {
 	    this.tete = courant.getSuc();
 	    //on libere la place
 	    this.libererPlace(p);
-	}
-	else {
+	    
+	} else {
 	    int place = this.tete;
 	    // trouver le precedent
 	    while (this.tab[place].getSuc() != p) {
-				place = this.tab[place].getSuc();
+		place = this.tab[place].getSuc();
 	    }
 	    this.tab[place].setSuc(courant.getSuc());
 	    this.libererPlace(p);
 	}
-
+	
     }
 
     /**
@@ -107,8 +100,8 @@ public class ListeChaineePlacesLibres implements Liste {
      * @param p place a liberer
      */
     private void libererPlace(int p) {
-			this.tab[p].setSuc(-2);
-
+        this.tab[p] = new MaillonChaine(null, this.teteLibre);
+        this.teteLibre = p;
     }
 
     /**
@@ -116,15 +109,19 @@ public class ListeChaineePlacesLibres implements Liste {
      */
     @Override
     public void adjtlis(String s) {
-			int libre = retournerPlaceLibre();
+        int libre = retournerPlaceLibre();
 
-			//on decale la place libre vers l'ancienne tete
-			this.tab[libre].setSuc(this.tete);
-			//on met a jour la tete
-			this.tete = libre;
-			//on ajute la valeur dans la nouvelle tete
-			this.tab[this.tete].setVal(s);
 
+        this.teteLibre = this.tab[this.teteLibre].getSuc();
+
+        
+        //on decale la place libre vers l'ancienne tete
+        this.tab[libre].setSuc(this.tete);
+        //on met a jour la tete
+        this.tete = libre;
+        //on ajute la valeur dans la nouvelle tete
+        this.tab[this.tete].setVal(s);
+        System.out.println(this.tete);
     }
 
     /**
@@ -132,10 +129,10 @@ public class ListeChaineePlacesLibres implements Liste {
      */
     @Override
     public void adjlis(int p, String s) {
-			int libre=this.retournerPlaceLibre();
-			this.tab[libre].setSuc(this.tab[p].getSuc());
-			this.tab[libre].setVal(s);
-			this.tab[p].setSuc(libre);
+        int libre=this.retournerPlaceLibre();
+        this.tab[libre].setSuc(this.tab[p].getSuc());
+        this.tab[libre].setVal(s);
+        this.tab[p].setSuc(libre);
     }
 
     /**
@@ -144,23 +141,23 @@ public class ListeChaineePlacesLibres implements Liste {
      * @return la tete de la liste libre et met a jour la liste libre
      */
     public int retournerPlaceLibre() {
-	//A COMPLETER
-			throw (new Error ("A compléter"));
+        return this.teteLibre;
     }
-
-
+    
+	
     public String toString()
-    {
-			String s="*******************\n* contenu liste CHAINEE *\n*******************\n";
-			int place=this.tete;
-			while(place!=-1){
-				s+=this.tab[place].getVal()+"\n";
-				place=this.tab[place].getSuc();
-			}
-			s+="*******************";
-			return(s);
+    {	
+	String s="*******************\n* contenu liste CHAINEE *\n*******************\n";
+	int place=this.tete;
+	while(place!=-1)
+	    {
+		s+=this.tab[place].getVal()+"\n";
+			place=this.tab[place].getSuc();
+	    }
+	s+="*******************";
+	return(s);
     }
-
-
-
+    
+    
+    
 }

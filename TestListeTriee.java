@@ -34,7 +34,7 @@ public class TestListeTriee {
 
 
 			// verifie la valeur
-			assertEquals("mauvaise valeur",reponse[i],lT.val(p));
+			assertEquals("mauvaise valeur "+i,reponse[i],lT.val(p));
 			
 			// decale place
 			p = lT.suc(p);
@@ -57,7 +57,7 @@ public class TestListeTriee {
 	    String[] mots= {"a","b","c"};
 	    String[] reponse= {"a","b","c"};
 	    for (int i = 0; i < mots.length; i++){
-		lT.adjlisT(mots[i]);
+			lT.adjlisT(mots[i]);
 	    }    	
 	    
 	    // verification
@@ -147,6 +147,91 @@ public class TestListeTriee {
 	    verifie(lT, reponse);
 	}
 
+	/**
+	 * test de suppression
+	 */
+	public void test_07_suppTete() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] mots= {"a","b","c"};
+	    String[] reponse= {"b","c"};
+	    for (int i = 0; i < mots.length; i++){
+			lT.adjlisT(mots[i]);
+	    }    	
+	    lT.suplisT("a");
+	    // verification
+	    verifie(lT, reponse);
+	}
+
+	/**
+	 * test de suppression
+	 */
+	public void test_08_suppMilieu() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] mots= {"a","b","c"};
+	    String[] reponse= {"a","c"};
+	    for (int i = 0; i < mots.length; i++){
+			lT.adjlisT(mots[i]);
+	    }    	
+	    lT.suplisT("b");
+	    // verification
+	    verifie(lT, reponse);
+	}
+
+	/**
+	 * test de suppression
+	 */
+	public void test_09_suppQueue() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] mots= {"a","b","c"};
+	    String[] reponse= {"a","b"};
+	    for (int i = 0; i < mots.length; i++){
+			lT.adjlisT(mots[i]);
+	    }    	
+	    lT.suplisT("c");
+	    // verification
+	    verifie(lT, reponse);
+	}
+
+	/**
+	 * test de suppression
+	 */
+	public void test_10_suppAvecDouble() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] mots= {"a","b","b"};
+	    String[] reponse= {"a","b"};
+	    for (int i = 0; i < mots.length; i++){
+			lT.adjlisT(mots[i]);
+	    }    	
+	    lT.suplisT("b");
+	    // verification
+	    verifie(lT, reponse);
+	}
+
+	/**
+	 * test de suppression
+	 */
+	public void test_10_suppListeVide() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] reponse= {};    	
+	    lT.suplisT("a");
+	    // verification
+	    verifie(lT, reponse);
+	}
+
+	/**
+	 * test de suppression
+	 */
+	public void test_11_suppNonExistant() {
+	    ListeTriee lT = new ListeTriee(new ListeProf());
+	    String[] mots= {"a","b","c"};
+	    String[] reponse= {"a","b","c"};
+	    for (int i = 0; i < mots.length; i++){
+			lT.adjlisT(mots[i]);
+	    }    	
+	    lT.suplisT("d");
+	    // verification
+	    verifie(lT, reponse);
+	}
 
 
 

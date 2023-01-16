@@ -22,8 +22,7 @@ public class ListeTriee{
      * @return tete de liste
      */
     public int tete(){
-	//A COMPLETER
-	throw (new error ("A compléter"));
+	return liste.tete();
     }
 	
     /**
@@ -32,8 +31,7 @@ public class ListeTriee{
      * @return place derriere p dans la liste
      */
     public int suc(int p){
-	//A COMPLETER
-	throw (new error ("A compléter"));
+        return liste.suc(p);
     }
     
     /**
@@ -42,8 +40,7 @@ public class ListeTriee{
      * @return la valeur associee  p
      */
     public String val(int p){
-	//A COMPLETER
-	throw (new error ("A compléter"));
+	 return liste.val(p);
     }
  
     /**
@@ -52,8 +49,7 @@ public class ListeTriee{
      * @return vrai si p est a la fin de la liste, faux sinon
      */   
     public boolean finliste(int p){
-	//A COMPLETER
-	throw (new error ("A compléter"));
+        return liste.finliste(p);
     }
 	
     
@@ -62,8 +58,33 @@ public class ListeTriee{
      * @param chaine element a inserer
      */
     public void adjlisT(String chaine){
-	//A COMPLETER
-	throw (new error ("A compléter"));
+        if (this.finliste(this.tete())){
+            liste.adjtlis(chaine);
+        }
+        else{
+            if(this.val(this.tete()).compareTo(chaine)>=0){
+                liste.adjtlis(chaine);
+            }
+            else{
+                boolean trouve = false;
+                int i2 = this.tete();
+                int i= this.suc(i2);
+                while(!trouve && !this.finliste(i)){
+                    if(this.val(i).compareTo(chaine)>=0){
+                        trouve = true;
+                        liste.adjlis(i2, chaine);
+                    }
+                    i2 = i;
+                    i = this.suc(i);
+                }
+                if (!trouve){
+                    liste.adjlis(i2, chaine);
+                }
+                
+            }
+        }
+        
+        
     }
 	
     /**
@@ -71,11 +92,13 @@ public class ListeTriee{
      * @param chaine l'element a supprimer 
      */
     public void suplisT(String chaine){
-	//A COMPLETER
-	throw (new error ("A compléter"));
-    }
-		
-    public String toString(){
-	return liste.toString();
+        boolean trouve = false;
+        int i = this.tete();
+        while(!trouve && !this.finliste(i)){
+            if (this.val(i).compareTo(chaine)==0){
+                liste.suplis(i);
+            }
+            i = this.suc(i);
+        }
     }
 }
