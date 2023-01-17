@@ -49,7 +49,7 @@ public class ListeChaineePlacesLibres implements Liste {
      */
     @Override
     public boolean finliste(int p) {
-	return p == -1;
+	    return p == -1;
     }
     
     /**
@@ -121,7 +121,6 @@ public class ListeChaineePlacesLibres implements Liste {
         this.tete = libre;
         //on ajute la valeur dans la nouvelle tete
         this.tab[this.tete].setVal(s);
-        System.out.println(this.tete);
     }
 
     /**
@@ -130,10 +129,13 @@ public class ListeChaineePlacesLibres implements Liste {
     @Override
     public void adjlis(int p, String s) {
         int libre=this.retournerPlaceLibre();
+
+        this.teteLibre = this.tab[this.teteLibre].getSuc();
+
         this.tab[libre].setSuc(this.tab[p].getSuc());
         this.tab[libre].setVal(s);
         this.tab[p].setSuc(libre);
-    }
+    } //on decale la place libre vers l'ancienne teteC
 
     /**
      * permet de recuperer une place libre

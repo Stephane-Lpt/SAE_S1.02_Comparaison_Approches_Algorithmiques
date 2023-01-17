@@ -77,14 +77,11 @@ public class ListeTriee{
                     i2 = i;
                     i = this.suc(i);
                 }
-                if (!trouve){
+                if(!trouve){
                     liste.adjlis(i2, chaine);
                 }
-                
             }
-        }
-        
-        
+        }   
     }
 	
     /**
@@ -96,6 +93,7 @@ public class ListeTriee{
         int i = this.tete();
         while(!trouve && !this.finliste(i)){
             if (this.val(i).compareTo(chaine)==0){
+                trouve = true;
                 liste.suplis(i);
             }
             i = this.suc(i);
