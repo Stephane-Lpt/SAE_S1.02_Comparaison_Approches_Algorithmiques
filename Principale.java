@@ -58,11 +58,12 @@ public class Principale{
         remplir_liste(lT, "noms10000.txt");
 
         long temps;
+        String[] donneeD={"ABBADI", "ABERGEL", "ALIAS", "ALIOUI", "AKKUS", "ALAZARD","ALLA", "AIDARA", "ABRANTES", "AARAB"};
+        String[] donneeF={"WEIS", "ZANIN", "WERQUIN", "YAGOUBI", "WERNERT","WAWRZYNIAK", "ZULIANI", "ZAIRE", "WAVRANT", "VILLAR"};
 
 
         // Question 7
         System.out.println("Question 7\nadjlisT avec element debut alphabet\n");
-        String[] donneeD={"ABBADI", "ABERGEL", "ALIAS", "ALIOUI", "AKKUS", "ALAZARD","ALLA", "AIDARA", "ABRANTES", "AARAB"};
         
         lT = new ListeTriee(new ListeContigue(100000));
         System.out.println("contigue :"+chronoAdjlis(lT, donneeD));
@@ -73,7 +74,6 @@ public class Principale{
 
         // Question 8
         System.out.println("\n\nQuestion 8\nadjlisT avec element fin alphabet\n");
-        String[] donneeF={"WEIS", "ZANIN", "WERQUIN", "YAGOUBI", "WERNERT","WAWRZYNIAK", "ZULIANI", "ZAIRE", "WAVRANT", "VILLAR"};
         
         lT = new ListeTriee(new ListeContigue(100000));
         System.out.println("contigue :"+chronoAdjlis(lT, donneeF));
@@ -82,14 +82,33 @@ public class Principale{
         lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
         System.out.println("chainePlaceLibre :"+chronoAdjlis(lT, donneeF));
 
+
+
         // Question 9
         /**
-         * contigue :
-         * 
-         * chainee : 
-         * 
-         * chainePlaceLibre : parcours toute la liste
+         * parcours toute la liste, il n'est donc pas intéressant de répéter cette operation 10fois 
+         * car il parcourera toujours la liste en entier malgré l'implémenattion de liste donnée
          */
+
+        // Suestion 10
+        System.out.println("\n\nQuestion 10\nsuplisT avec element debut alphabet\n");
+
+        lT = new ListeTriee(new ListeContigue(100000));
+        System.out.println("contigue :"+chronoSuplis(lT, donneeF));
+        lT = new ListeTriee(new ListeChainee(100000));
+        System.out.println("chaine :"+chronoSuplis(lT, donneeF));
+        lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
+        System.out.println("chainePlaceLibre :"+chronoSuplis(lT, donneeF    ));
+
+        // Suestion 11
+        System.out.println("\n\nQuestion 11\nsuplisT avec element fin alphabet\n");
+
+        lT = new ListeTriee(new ListeContigue(100000));
+        System.out.println("contigue :"+chronoSuplis(lT, donneeD));
+        lT = new ListeTriee(new ListeChainee(100000));
+        System.out.println("chaine :"+chronoSuplis(lT, donneeD));
+        lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
+        System.out.println("chainePlaceLibre :"+chronoSuplis(lT, donneeD));
     }
 
     public static long chronoAdjlis(ListeTriee lT, String[] donnee){
@@ -100,7 +119,16 @@ public class Principale{
         }
         long date_fin = System.nanoTime();
         return date_fin - date_debut;
+    }
 
+    public static long chronoSuplis(ListeTriee lT, String[] donnee){
+        remplir_liste(lT, "noms10000.txt");
+        long date_debut = System.nanoTime();
+        for(int i=0; i<donnee.length;i++){
+            lT.suplisT(donnee[i]);
+        }
+        long date_fin = System.nanoTime();
+        return date_fin - date_debut;
     }
 
 
