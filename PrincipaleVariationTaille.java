@@ -45,24 +45,15 @@ public class PrincipaleVariationTaille{
     }
 		
     public static void main(String [] args){
-        System.out.println("Bienvenue !\n");
-
-        //Exemple d'utilisation de la classe EcritureFichier
-        EcritureFichier fichier = new EcritureFichier("resultats.csv");
-        fichier.ouvrirFichier();
-        fichier.ecrireLigne("liste;operation;emplacement;duree");
-        fichier.fermerFichier();
-
-        // Question 6
-        ListeTriee lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
-        remplir_liste(lT, "noms100.txt");
 
         String[] actionListe={"ajout","suppression"};
         String[] typeListe={"contigue","chainee","chaineePlaceLibre"};
         String[] donneeD={"ABBADI", "ABERGEL", "ALIAS", "ALIOUI", "AKKUS", "ALAZARD","ALLA", "AIDARA", "ABRANTES", "AARAB"};
         String[] donneeF={"WEIS", "ZANIN", "WERQUIN", "YAGOUBI", "WERNERT","WAWRZYNIAK", "ZULIANI", "ZAIRE", "WAVRANT", "VILLAR"};
         
+        EcritureFichier fichier = new EcritureFichier("resultats2.csv");
         fichier.ouvrirFichier();
+        fichier.ecrireLigne("liste;operation;emplacement;duree");
         for(int i=0; i<actionListe.length;i++){
             for(int j=0; j<2; j++){
                 String[] donnee = donneeD;
@@ -72,7 +63,7 @@ public class PrincipaleVariationTaille{
                     typeDonnee = "fin";
                 }
                 for(int k=0; k<typeListe.length; k++){
-                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, "noms10000.txt", 100);
+                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, "noms10000.txt", 1);
                     fichier.ecrireLigne(typeListe[k]+";"+actionListe[i]+";"+typeDonnee+";"+temps);
                 }
             }

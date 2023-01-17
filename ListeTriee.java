@@ -58,30 +58,22 @@ public class ListeTriee{
      * @param chaine element a inserer
      */
     public void adjlisT(String chaine){
-        if (this.finliste(this.tete())){
-            liste.adjtlis(chaine);
+        int p = this.tete();
+        int pP = p;
+        boolean trouve = false;
+        while (!this.finliste(p) && !trouve){
+            if(this.val(p).compareTo(chaine)>= 0){
+                trouve = true;
+            }else{
+                pP = p;
+                p = this.suc(p);
+            }
         }
-        else{
-            if(this.val(this.tete()).compareTo(chaine)>=0){
-                liste.adjtlis(chaine);
-            }
-            else{
-                boolean trouve = false;
-                int i2 = this.tete();
-                int i= this.suc(i2);
-                while(!trouve && !this.finliste(i)){
-                    if(this.val(i).compareTo(chaine)>=0){
-                        trouve = true;
-                        liste.adjlis(i2, chaine);
-                    }
-                    i2 = i;
-                    i = this.suc(i);
-                }
-                if(!trouve){
-                    liste.adjlis(i2, chaine);
-                }
-            }
-        }   
+        if(p==pP){
+            liste.adjtlis(chaine);
+        }else{
+            liste.adjlis(pP, chaine);
+        }
     }
 	
     /**
