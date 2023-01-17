@@ -89,12 +89,14 @@ public class ListeTriee{
      * @param chaine l'element a supprimer 
      */
     public void suplisT(String chaine){
-        boolean trouve = false;
+        boolean arret = false;
         int i = this.tete();
-        while(!trouve && !this.finliste(i)){
-            if (this.val(i).compareTo(chaine)==0){
-                trouve = true;
-                liste.suplis(i);
+        while(!arret && !this.finliste(i)){
+            if (this.val(i).compareTo(chaine)>=0){
+                if (this.val(i).compareTo(chaine)==0){
+                    liste.suplis(i);
+                }
+                arret = true;
             }
             i = this.suc(i);
         }
