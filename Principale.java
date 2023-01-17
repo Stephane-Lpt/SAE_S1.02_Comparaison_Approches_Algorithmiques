@@ -53,6 +53,7 @@ public class Principale{
         fichier.ecrireLigne("liste;operation;emplacement;duree");
         fichier.fermerFichier();
 
+        // Question 6
         ListeTriee lT = new ListeTriee(new ListeChaineePlacesLibres(10010));
         remplir_liste(lT, "noms10000.txt");
 
@@ -79,7 +80,7 @@ public class Principale{
         lT = new ListeTriee(new ListeChainee(100000));
         System.out.println("chaine :"+chronoAdjlis(lT, donneeF));
         lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
-        System.out.println("chainePlaceLibre :"+chronoAdjlis(lT, donneeF))
+        System.out.println("chainePlaceLibre :"+chronoAdjlis(lT, donneeF));
 
         // Question 9
         /**
