@@ -5,7 +5,7 @@
  */
 
 
-public class Principale{
+public class PrincipaleVariationTaille{
     private static final String[] ELEMENTS_DE_DEBUT
 	= {"ABITEBOUL", "ADLEMAN", "AL-KINDI", "ALUR", "BERNERS-LEE",
 	"BOOLE", "BUCHI", "BUTLER", "CLARKE", "CURRY"};
