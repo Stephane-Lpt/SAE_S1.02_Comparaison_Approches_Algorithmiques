@@ -22,12 +22,14 @@ public class ListeChaineePlacesLibres implements Liste {
      * @param taillemax de la liste
      */
     public ListeChaineePlacesLibres(int tMax) {
+        //verification taille liste minimum a 1
         if (tMax < 1){
 			tMax = 1;
 		}
 		this.tab = new MaillonChaine[tMax];
 		this.tete = -1;
         this.teteLibre = 0;
+        //initialisation de la chaine de maillon
 		for(int i=0; i<this.tab.length-1; i++){
 			this.tab[i] = new MaillonChaine(null, i+1);
 		}

@@ -1,0 +1,13 @@
+liste;operation;emplacement;duree
+contigue;ajout;debut;25683
+chainee;ajout;debut;32208
+chaineePlaceLibre;ajout;debut;6538
+contigue;ajout;fin;20617
+chainee;ajout;fin;49264
+chaineePlaceLibre;ajout;fin;37465
+contigue;suppression;debut;65577
+chainee;suppression;debut;6611
+chaineePlaceLibre;suppression;debut;57525
+contigue;suppression;fin;196295
+chainee;suppression;fin;84640
+chaineePlaceLibre;suppression;fin;84282

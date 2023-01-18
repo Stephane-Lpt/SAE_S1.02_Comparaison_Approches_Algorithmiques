@@ -51,6 +51,10 @@
         String[] donneeD={"ABBADI", "ABERGEL", "ALIAS", "ALIOUI", "AKKUS", "ALAZARD","ALLA", "AIDARA", "ABRANTES", "AARAB"};
         String[] donneeF={"WEIS", "ZANIN", "WERQUIN", "YAGOUBI", "WERNERT","WAWRZYNIAK", "ZULIANI", "ZAIRE", "WAVRANT", "VILLAR"};
         
+        /**
+         * le code suivant chronomètre la moyenne de tempsd'execution de chaque type de liste donner dans typeListe pour chaque action définit dans actionListe 
+         * et pour les 2 jeux de données donnéeD et donnéeF soit noms en debut et noms en fin d'alphabet
+         */
         EcritureFichier fichier = new EcritureFichier("resultats.csv");
         fichier.ouvrirFichier();
         fichier.ecrireLigne("liste;operation;emplacement;duree");
@@ -63,7 +67,7 @@
                     typeDonnee = "fin";
                 }
                 for(int k=0; k<typeListe.length; k++){
-                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, "noms10000.txt", 1);
+                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, "noms10000.txt", 100);
                     fichier.ecrireLigne(typeListe[k]+";"+actionListe[i]+";"+typeDonnee+";"+temps);
                 }
             }
@@ -98,7 +102,7 @@
             remplir_liste(lT, nomFichier);
 
             long date_debut = System . nanoTime () ;
-
+            //debut chrono
             for (int j=0; j<donnee.length; j++){
                 switch (typeAction){
                     case "ajout":
@@ -109,7 +113,7 @@
                         break;
                 }
             }
-
+            //fin chrono
             long date_fin = System.nanoTime();
             moyenne+= date_fin - date_debut;
         }

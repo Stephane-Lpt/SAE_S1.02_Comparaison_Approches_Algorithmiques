@@ -50,8 +50,9 @@ public class PrincipaleVariationTaille{
         String[] typeListe={"contigue","chainee","chaineePlaceLibre"};
         String[] donneeD={"ABBADI", "ABERGEL", "ALIAS", "ALIOUI", "AKKUS", "ALAZARD","ALLA", "AIDARA", "ABRANTES", "AARAB"};
         String[] donneeF={"WEIS", "ZANIN", "WERQUIN", "YAGOUBI", "WERNERT","WAWRZYNIAK", "ZULIANI", "ZAIRE", "WAVRANT", "VILLAR"};
+        String nomFichier = "noms10000.txt";
         
-        EcritureFichier fichier = new EcritureFichier("resultats2.csv");
+        EcritureFichier fichier = new EcritureFichier("resultatsV"+nomFichier+".csv");
         fichier.ouvrirFichier();
         fichier.ecrireLigne("liste;operation;emplacement;duree");
         for(int i=0; i<actionListe.length;i++){
@@ -63,7 +64,7 @@ public class PrincipaleVariationTaille{
                     typeDonnee = "fin";
                 }
                 for(int k=0; k<typeListe.length; k++){
-                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, "noms10000.txt", 1);
+                    long temps = moyChronoListeTriee(typeListe[k], actionListe[i], donnee, nomFichier, 1);
                     fichier.ecrireLigne(typeListe[k]+";"+actionListe[i]+";"+typeDonnee+";"+temps);
                 }
             }
@@ -84,15 +85,15 @@ public class PrincipaleVariationTaille{
             ListeTriee lT = null;
             switch(typeListe){
                 case "contigue":
-                    lT = new ListeTriee(new ListeContigue(100000));
+                    lT = new ListeTriee(new ListeContigue(1000000));
                     break;
 
                 case "chainee":
-                    lT = new ListeTriee(new ListeChainee(100000));
+                    lT = new ListeTriee(new ListeChainee(1000000));
                     break;
                 
                 case "chaineePlaceLibre":
-                    lT = new ListeTriee(new ListeChaineePlacesLibres(100000));
+                    lT = new ListeTriee(new ListeChaineePlacesLibres(1000000));
                     break;
             }
             remplir_liste(lT, nomFichier);
