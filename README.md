@@ -1,1 +1,2 @@
-https://prod.liveshare.vsengsaas.visualstudio.com/join?8AECF9B40C86BCE28F09A2DD5CA68C2515AA
+L’objectif de la SAÉ est de comparer expérimentalement l’efficacité de trois types d’implémentation de listes triées de chaînes, notamment de grande taille, et ce pour les opérations
+d’ajout et de suppression. Ces implémentations de listes seront 
