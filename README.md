@@ -1,1 +1,1 @@
-L’objectif de la SAÉ est de comparer expérimentalement l’efficacité de trois types d’implémentation de listes triées de chaînes, notamment de grande taille, et ce pour les opérations d’ajout et de suppression.
+L’objectif de la SAÉ est de comparer expérimentalement l’efficacité de trois types d’implémentation de listes triées de chaînes, de grande taille, et ce pour les opérations d’ajout et de suppression. Implémentations : contiguë, chaînée dans un tableau avec récupération des places libérées puis avec gestion de l’espace libre à l’aide d’une liste.
